@@ -18,7 +18,13 @@
                     var sellquant = Number(document.getElementById("sell").value) ;
                     var originalquan = Number(document.getElementById("original").value) ;
                     var rem= Number(originalquan-sellquant);
-                    document.getElementById("original").value = rem;
+                    if(rem > 0)
+                    {
+                        document.getElementById("original").value = rem;
+                    }
+                    else{
+                        alert("NOT Sold");
+                    }
 
                     }
                 </script>                     
