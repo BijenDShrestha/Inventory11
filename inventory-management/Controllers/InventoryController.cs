@@ -197,6 +197,22 @@ namespace InventoryManagement.Controllers{
             return View(userlist);
         }
 
+         [HttpGet]
+        public ActionResult userdelete(string username)
+        {
+            var abcde = db.Usertable.Find(username);
+            return View(abcde);
+        }
+
+
+        [HttpPost]
+        public ActionResult userdelete(Users user)
+        {
+            db.Usertable.Attach(user);
+            db.Usertable.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
     }
