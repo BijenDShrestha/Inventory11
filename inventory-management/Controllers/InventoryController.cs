@@ -176,8 +176,20 @@ namespace InventoryManagement.Controllers{
         {
             return View();
         }
-
+       [HttpGet]
         public IActionResult Register()
+        {      
+                 return View();      
+        }
+          [HttpPost]
+        public ActionResult Register(Users users)
+        {
+            db.Usertable.Add(users);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult UserList()
         {
             return View();
         }

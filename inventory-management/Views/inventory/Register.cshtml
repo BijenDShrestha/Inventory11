@@ -1,7 +1,7 @@
 <h1> this is register page</h1>
 
-@model Inventory
-<form action="/inventory/Create" method="POST">
+@model Users
+<form action="/inventory/Register" method="POST">
 
                 <h1 class="card-title">Create</h1>
 
@@ -9,30 +9,35 @@
 
                 <div class="card-body">
                     <div class="col-md-6 form-group">
-                    <label asp-for="Name">First Name</label>
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                          <input asp-for="Name" class="form-control" type="text" required>      
+                    <label asp-for="firstname">First Name</label>
+                    <span asp-validation-for="firstname" class="text-danger"></span>
+                          <input asp-for="firstname" class="form-control" type="text" required>      
                   </div>
                     <div class="col-md-6 form-group">
-                    <label asp-for="Supplier"> Last Name</label>
-                    <span asp-validation-for="Supplier" class="text-danger"></span>
-                          <input asp-for="Supplier" class="form-control" type="text" required>      
+                    <label asp-for="lastname"> Last Name</label>
+                    <span asp-validation-for="lastname" class="text-danger"></span>
+                          <input asp-for="lastname" class="form-control" type="text" required>      
                   </div>
                     <div class="col-md-6 form-group">
-                    <label asp-for="Supplier"> Username</label>
-                    <span asp-validation-for="Supplier" class="text-danger"></span>
-                          <input asp-for="Supplier" class="form-control" type="text" required>      
+                    <label asp-for="username"> Username</label>
+                    <span asp-validation-for="username" class="text-danger"></span>
+                          <input asp-for="username" class="form-control" type="text" required>      
                   </div>
                   
                   <div class="col-md-6 form-group">
-                    <label asp-for="Price"> Mobile</label>
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                          <input asp-for= "Price" class="form-control" type="number" required>      
+                    <label asp-for="mobile"> Mobile</label>
+                    <span asp-validation-for="mobile" class="text-danger"></span>
+                          <input asp-for= "mobile" class="form-control" type="number" required>      
                   </div>
                   <div class="col-md-6 form-group">
-                    <label asp-for="Quantity"> Email</label>
-                    <span asp-validation-for="Quantity" class="text-danger"></span>
-                          <input asp-for= "Quantity" class="form-control" type="number" required>      
+                    <label asp-for="email"> Email</label>
+                    <span asp-validation-for="email" class="text-danger"></span>
+                          <input asp-for= "email" class="form-control" type="text" required>      
+                  </div>
+                   <div class="col-md-6 form-group">
+                    <label asp-for="role"> Email</label>
+                    <span asp-validation-for="role" class="text-danger"></span>
+                          <input asp-for= "role" class="form-control" type="text" required>      
                   </div>
                 </div>
                 <div class="card-footer">
