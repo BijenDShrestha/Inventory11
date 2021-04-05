@@ -1,15 +1,18 @@
 @model List<Users>;
   @{
+    
     Layout = "_Layout";
   }
+
   @{
     ViewData["Title"] = "User List";
 }
+
 <h1>List of Inventories</h1>
     <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Id</th>
+      
       <th scope="col">Full Name</th>
       <th scope="col">Username</th>
       <th scope="col">Mobile</th>
@@ -27,7 +30,7 @@
 {
    <tbody>
     <tr>
-      <th scope="row">@user.Id</th>
+      
       <td>@user.firstname @user.lastname</td>
       <td>@user.username</td>
       <td>@user.mobile</td>
@@ -35,7 +38,7 @@
       <td>@user.role</td>
       @if(User.Identity.IsAuthenticated)
       {
-        <td><a href="/inventory/delete?id=@user.Id">
+        <td><a href="/inventory/delete?username=@user.username">
       Delete</a></td>
      
       }

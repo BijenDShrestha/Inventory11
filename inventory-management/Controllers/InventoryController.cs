@@ -145,13 +145,15 @@ namespace InventoryManagement.Controllers{
         [HttpPost("login")]
         public async Task<IActionResult> Validatelogin(string username, string password,string ReturnUrl)
         {   ViewData["returnUrl"]= ReturnUrl;
-            if(username=="test" && password=="test")
+        var check = db.Usertable.Find(username);
+            if(check!=null)
             {
+                var fullname=check.firstname+" "+check.lastname;
                   // giving the login credential througn claims authentication
                 var claims = new List<Claim>();
                 claims.Add(new Claim("username",username));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier,username));
-                claims.Add(new Claim(ClaimTypes.Name,username));
+                claims.Add(new Claim(ClaimTypes.Name,fullname));
                 var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(claimsPrincipal);

@@ -28,16 +28,19 @@ public class Inventory{
 }
 public class Users
 {
-       [Key]
+      [Required]
        public int Id{get; set;}
        [Required]
        public string firstname{get; set;}
        [Required]
        public string lastname{get; set;}
        [Required]
+        [Key]
        public string username {get; set;}
        [Required]
-       public int mobile {get; set;}
+       public string password{get; set;}
+       [Required]
+       public decimal mobile {get; set;}
        [Required]
 
        public string email {get; set;}
