@@ -146,14 +146,18 @@ namespace InventoryManagement.Controllers{
         public async Task<IActionResult> Validatelogin(string username, string password,string ReturnUrl)
         {   ViewData["returnUrl"]= ReturnUrl;
         var check = db.Usertable.Find(username);
-            if(check!=null)
+        var passwordcheck=check.password;
+            if(check!=null && password==passwordcheck)
             {
                 var fullname=check.firstname+" "+check.lastname;
+            
                   // giving the login credential througn claims authentication
                 var claims = new List<Claim>();
                 claims.Add(new Claim("username",username));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier,username));
                 claims.Add(new Claim(ClaimTypes.Name,fullname));
+                claims.Add(new Claim(ClaimTypes.Role,check.role));
+                
                 var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(claimsPrincipal);
@@ -184,11 +188,20 @@ namespace InventoryManagement.Controllers{
                  return View();      
         }
           [HttpPost]
-        public ActionResult Register(Users users)
+        public ActionResult Register(Users users,string username,string email)
         {
-            db.Usertable.Add(users);
+            var check = db.Usertable.Find(username);
+            
+             if(check==null)
+             {
+                 db.Usertable.Add(users);
             db.SaveChanges();
             return RedirectToAction("Index");
+             }
+              TempData["Error"] ="User name already exist";
+            return View("Register");
+            
+            
         }
 
         public IActionResult UserList()

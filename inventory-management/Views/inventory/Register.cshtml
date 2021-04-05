@@ -1,6 +1,15 @@
-<h1> this is register page</h1>
 
+<h1> this is register page</h1>
+@{
+    
+    var error = TempData["Error"] as string;
+}
 @model Users
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert-danger" style="padding: 20px;">@error</h2>
+}
+
 <form action="/inventory/Register" method="POST">
 
                 <h1 class="card-title">Create</h1>
@@ -39,7 +48,7 @@
                           <input asp-for= "email" class="form-control" type="text" required>      
                   </div>
                    <div class="col-md-6 form-group">
-                    <label asp-for="role"> Email</label>
+                    <label asp-for="role"> Role</label>
                     <span asp-validation-for="role" class="text-danger"></span>
                           <input asp-for= "role" class="form-control" type="text" required>      
                   </div>
