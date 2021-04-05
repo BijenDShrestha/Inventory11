@@ -24,6 +24,7 @@ namespace InventoryManagement.Controllers{
         {
             return View();
         }
+        [Authorize]
         public IActionResult Index()
         {   
             var product = db.Inventories.ToList();
@@ -37,7 +38,7 @@ namespace InventoryManagement.Controllers{
         }
 
 
-        [Authorize(Roles= "Admin")]
+        [Authorize(Roles= "Seller")]
         [HttpGet]
         public ActionResult Create()
         {
@@ -146,8 +147,10 @@ namespace InventoryManagement.Controllers{
         public async Task<IActionResult> Validatelogin(string username, string password,string ReturnUrl)
         {   ViewData["returnUrl"]= ReturnUrl;
         var check = db.Usertable.Find(username);
-        var passwordcheck=check.password;
-            if(check!=null && password==passwordcheck)
+        if(check!=null)
+        {
+            var passwordcheck=check.password;
+            if( password==passwordcheck)
             {
                 var fullname=check.firstname+" "+check.lastname;
             
@@ -163,6 +166,12 @@ namespace InventoryManagement.Controllers{
                 await HttpContext.SignInAsync(claimsPrincipal);
                 return Redirect(ReturnUrl);
             }
+            TempData["Error"] ="Error. Username or Password Error";
+            return View("login");
+
+        }
+        
+            
             TempData["Error"] ="Error. Username or Password Error";
             return View("login");
             

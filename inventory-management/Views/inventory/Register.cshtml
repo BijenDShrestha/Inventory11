@@ -50,7 +50,12 @@
                    <div class="col-md-6 form-group">
                     <label asp-for="role"> Role</label>
                     <span asp-validation-for="role" class="text-danger"></span>
-                          <input asp-for= "role" class="form-control" type="text" required>      
+                          
+                          <select asp-for="role" class="form-control">
+                            <option value="Admin">Admin</option>
+                            <option value="Seller">Seller</option>
+                            <option value="Viewer">Viewer</option>
+                          </select>  
                   </div>
                 </div>
                 <div class="card-footer">
