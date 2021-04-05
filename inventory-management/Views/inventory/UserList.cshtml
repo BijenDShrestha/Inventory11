@@ -1,44 +1,43 @@
-@model List<Inventory>;
+@model List<Users>;
   @{
     Layout = "_Layout";
   }
   @{
-    ViewData["Title"] = "Inventory List";
+    ViewData["Title"] = "User List";
 }
 <h1>List of Inventories</h1>
     <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Supplier</th>
-      <th scope="col">Expiry Date</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
       @if(User.Identity.IsAuthenticated)
       {
         <th scope="col">Action</th>
-      <th scope="col">Sold</th>
+      
       }
       
     </tr>
   </thead>
-@foreach (var inventory in Model)
+@foreach (var user in Model)
 {
    <tbody>
     <tr>
-      <th scope="row">@inventory.Id</th>
-      <td>@inventory.Name</td>
-      <td>@inventory.Supplier</td>
-      <td>@inventory.ExpDate</td>
-      <td>@inventory.Price</td>
-      <td>@inventory.Quantity</td>
+      <th scope="row">@user.Id</th>
+      <td>@user.firstname @user.lastname</td>
+      <td>@user.username</td>
+      <td>@user.mobile</td>
+      <td>@user.email</td>
+      <td>@user.role</td>
       @if(User.Identity.IsAuthenticated)
       {
-        <td><a href="/inventory/edit?id=@inventory.Id">
-      Edit</a>/<a href="/inventory/delete?id=@inventory.Id">
+        <td><a href="/inventory/delete?id=@user.Id">
       Delete</a></td>
-      <td><a href="/inventory/sell?id=@inventory.Id">Sell</td>
+     
       }
       
     </tr>

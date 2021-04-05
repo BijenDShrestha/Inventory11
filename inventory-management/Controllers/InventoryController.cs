@@ -191,7 +191,8 @@ namespace InventoryManagement.Controllers{
 
         public IActionResult UserList()
         {
-            return View();
+            var userlist = db.Usertable.ToList();
+            return View(userlist);
         }
 
 
