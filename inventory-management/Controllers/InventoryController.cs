@@ -19,6 +19,7 @@ namespace InventoryManagement.Controllers{
         {
             db = _db;
         }
+        [Authorize]
         public IActionResult WelcomePage()
         {
             return View();
@@ -150,6 +151,7 @@ namespace InventoryManagement.Controllers{
                 var claims = new List<Claim>();
                 claims.Add(new Claim("username",username));
                 claims.Add(new Claim(ClaimTypes.NameIdentifier,username));
+                claims.Add(new Claim(ClaimTypes.Name,username));
                 var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(claimsPrincipal);
