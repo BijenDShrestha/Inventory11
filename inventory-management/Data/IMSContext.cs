@@ -10,5 +10,6 @@ namespace InventoryManagement.Data
 
         }
         public DbSet<Inventory> Inventories {get; set;}
+        public DbSet<Users> Usertable {get; set;}
     }
 }
