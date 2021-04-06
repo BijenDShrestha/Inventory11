@@ -6,7 +6,7 @@
 
 @if (!string.IsNullOrEmpty(error))
 {
-    <h2 class="alert-danger" style="padding: 20px;">@error</h2>
+    <h4 style="font-family: Arial, sans-serif;" class="alert-danger" style="padding: 20px;">@error</h4>
 }
 <div>
     <form class="px-4 py-3" action="/login?ReturnUrl=@System.Net.WebUtility.UrlEncode(ReturnUrl)" method="POST">
