@@ -5,30 +5,25 @@
     <input type="hidden" asp-for="Supplier" />
     <input type="hidden" asp-for="ExpDate" />
     <input type="hidden" asp-for="Price" />
-    
-        How many quantities do you want to sell?
-        
-        <div class="col-md-6 form-group">
-                <input id="sell" type="number" class="form-control" required>      
+    <div class="col-md-6 form-group">
+        <label style="font-family: Arial, sans-serif;" class="h3 text-muted">How many item do you want to sell?</label>
+        <input id="sell" type="number" class="form-control" required>
+        <input id="original" type="hidden" asp-for="Quantity" class="form-control" required>
+        <script>
+            function myFunction() {
+                var sellquant = Number(document.getElementById("sell").value);
+                var originalquan = Number(document.getElementById("original").value);
+                var rem = Number(originalquan - sellquant);
+                if (rem >= 0) {
+                    document.getElementById("original").value = rem;
+                }
+                else {
+                    alert("The quantity you have entered is more than the quantity the inventory has.");
+                }
 
-                <input id="original" type="hidden" asp-for= "Quantity" class="form-control" required> 
-                
-                <script>
-                    function myFunction(){
-                    var sellquant = Number(document.getElementById("sell").value) ;
-                    var originalquan = Number(document.getElementById("original").value) ;
-                    var rem= Number(originalquan-sellquant);
-                    if(rem > 0)
-                    {
-                        document.getElementById("original").value = rem;
-                    }
-                    else{
-                        alert("NOT Sold");
-                    }
-
-                    }
-                </script>                     
-        </div>        
+            }
+        </script>
         <br>
-        <button type="submit" onclick="myFunction()" class="btn btn-primary">Sell</button>
+        <button type="submit" onclick="myFunction()" class="btn btn-success">Sell the quantity</button>
+    </div>
 </form>

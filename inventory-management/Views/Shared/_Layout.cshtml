@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,80 +9,76 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Inventory" asp-action="WelcomePage">Inventory Management</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if(User.IsInRole("Admin") ||User.IsInRole("Seller")||User.IsInRole("Viewer"))
-                        {
-                              <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="Index">Home</a>
+    <header >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark ">
+            <a class="navbar-brand" asp-area="" asp-controller="Inventory" asp-action="WelcomePage" style="font-family:Arial;">Inventory
+                Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse display-4" id="navbarSupportedContent" >
+                <ul class="navbar-nav mr-auto navbar-brand">
+                    @if (User.IsInRole("Admin") || User.IsInRole("Seller") || User.IsInRole("Viewer"))
+                    {
+                        <li class="nav-item pl-3">
+                            <a class="nav-link" asp-area="" asp-controller="Inventory" asp-action="Index">Home
+                                <span class="sr-only">(current)</span></a>
                         </li>
-                        }
-                      
-                        @if(User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="Create">Add</a>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item pl-3">
+                            <a class="nav-link" asp-area="" asp-controller="Inventory" asp-action="Create">Add
+                                <span class="sr-only">(current)</span></a>
                         </li>
-                        }
-                         @if(User.IsInRole("Admin") ||User.IsInRole("Seller")||User.IsInRole("Viewer"))
-                        {
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="lessquantity">Less Quantity Inventories</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="expired">Expiring Items </a>
+                    }
+                    @if (User.IsInRole("Admin") || User.IsInRole("Seller") || User.IsInRole("Viewer"))
+                    {
+                        <li class="nav-item pl-3">
+                            <a class="nav-link" asp-area="" asp-controller="Inventory" asp-action="lessquantity">Less
+                                Quantity<span class="sr-only">(current)</span></a>
                         </li>
-                        @if(User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="UserList">UserList</a>
+                        <li class="nav-item pl-3">
+                            <a class="nav-link" asp-area="" asp-controller="Inventory" asp-action="expired">Expiring
+                                Items<span class="sr-only">(current)</span></a>
                         </li>
-                        }  
-                        
-                        <li class="nav-item">
-                            <form asp-controller="Inventory" asp-action="Search">
-                                <input type="text" name="SearchString" placeholder="Search" />
-                                <input type="submit" value="Filter" />
-                        </form> 
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item pl-3">
+                            <a class="nav-link" asp-area="" asp-controller="Inventory" asp-action="UserList">UserList<span
+                                    class="sr-only">(current)</span></a>
                         </li>
-                        }
-                         @if(User.Identity.IsAuthenticated)
-                        {
-                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="Logout">Logout</a>
-                        </li>
-                        }
-                        @if(!User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inventory" asp-action="auth">Login </a>
-                        </li>
-                        }
-                        
-                       
-                    </ul>
-                </div>
+                    }
+                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <nav class="navbar navbar-light bg-light navbar-dark bg-dark">
+                        <form class="form-inline" asp-controller="Inventory" asp-action="Search">
+                            <input class="form-control mr-sm-2" type="search" name="SearchString" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        <form class="form-inline" asp-area="" asp-controller="Inventory" asp-action="Logout">
+                            <button class="btn btn-outline-success " type="submit">Logout</button>
+                        </form>
+                    </nav>
+                }
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container-fluid ">
+        <div class="container ">
+            <main role="main" class="pb-3 ">
+                @RenderBody()
+            </main>
+        </div>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted navbar-dark bg-dark">
         <div class="container">
-            &copy; 2021 - inventory_management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Inventory Management System
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -89,4 +86,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

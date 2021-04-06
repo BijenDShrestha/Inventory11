@@ -7,10 +7,13 @@
 }
 
 
+<br>
+<div style="font-family: Arial, sans-serif;" class="h2 text-muted">
+ List of Inventories that are going to expire in 1 month
+</div>
 
-<h1>List of Inventories that are going to expire in 1 months</h1>
-    <table class="table table-striped">
-  <thead>
+    <table class="table table-striped table-hover table-bordered table-secondary">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Name</th>
@@ -46,14 +49,18 @@
             <td>@inventory.Quantity</td>
        @if(User.IsInRole("Admin"))
       {
-        <td><a href="/inventory/edit?id=@inventory.Id">
-      Edit</a>/<a href="/inventory/delete?id=@inventory.Id">
-      Delete</a></td>
-      
+         <td>
+            <a class="btn btn-warning" href="/inventory/edit?id=@inventory.Id">
+              Edit
+            </a>
+            <a class="btn btn-danger" href="/inventory/delete?id=@inventory.Id">
+              Delete
+            </a>
+          </td>
       }  
       @if(User.IsInRole("Seller"))
       {
-        <td><a href="/inventory/sell?id=@inventory.Id">Sell</td>
+        <td><a class="btn btn-success" href="/inventory/sell?id=@inventory.Id">Sell</td>
       }
             </tr>
         </tbody>
