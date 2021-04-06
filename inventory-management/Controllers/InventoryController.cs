@@ -38,7 +38,7 @@ namespace InventoryManagement.Controllers{
         }
 
 
-        [Authorize(Roles= "Seller")]
+        [Authorize(Roles= "Admin")]
         [HttpGet]
         public ActionResult Create()
         {
