@@ -39,9 +39,14 @@
       <td>@inventory.Quantity</td>
           @if(User.IsInRole("Admin"))
       {
-        <td><a href="/inventory/edit?id=@inventory.Id">
-      Edit</a>/<a href="/inventory/delete?id=@inventory.Id">
-      Delete</a></td>
+          <td>
+            <a class="btn btn-warning" href="/inventory/edit?id=@inventory.Id">
+              Edit
+            </a>
+            <a class="btn btn-danger" href="/inventory/delete?id=@inventory.Id">
+              Delete
+            </a>
+          </td>
       
       }  
       @if(User.IsInRole("Seller"))
